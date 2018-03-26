@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>This is a website</title>
+    <script src="js/bridge.js"></script>
+  </head>
+  <body>
+    This is a body.
+    <br>
+    <button>This is a button</button>
+    <br>
+    <img src="images/Сука-Блинтон.png"/>
+    <br>
+    <img src="images/Товарищ-Дональд.png"/>
+    <br>
+    <div id="bridgeObjects">BRIDGE OBJECTS: </div>
+  </body>
+  <script>
+    function setUpThings() {
+      document.querySelector("button").addEventListener("click", () => {
+        let bridgeObjects = [
+          {
+            foo: "biz",
+            bar: "baz"
+          },
+          {
+            foo: "fizz",
+            bar: "buzz"
+          }
+        ];
+        sendBridgeObjects(bridgeObjects);
+      });
+      console.log("logging a thing.");
+    }
+
+    function doThing() {
+      alert("This is an alert");
+    }
+
+    function acceptBridgeObjectPayloadJson(bridgeObjectPayloadJson) {
+      acceptBridgeObjectPayloadJsonWithHandler(bridgeObjectPayloadJson, bridgeObject => {
+        document.getElementById("bridgeObjects").innerHTML += "<br>" + JSON.stringify(bridgeObject); // todo: do something with the bridge objects other than appending them as text to a tag.
+      });
+    }
+
+  </script>
+</html>
